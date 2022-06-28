@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container-fluid col-md-8 text-center mt-3">
+<h1 class="text text-bg-info"> {{product.name }} </h1>
+<div class="row">
+   <div class="col">
+      <img src="{{ asset('images/product/'~product.image) }}" width="250" height="250">
+   </div>
+   <div class="col">
+      <h4>Type: {{ product.type }}</h4>
+      <h4>Price: {{ product.price }}</h4>
+      <h4>OrderDetail List: </h4>
+      {% if product.orderdetail != null %}
+         {% for orderdetail in product.orderdetail %}
+            <a href="{{ path('view_product_by_id', {'id': orderdetail.id })}}">
+               {# <h5> {{ course.name }} </h5> #}
+            </a>
+         {% endfor %}
+      {% endif %}
+      {% if product.cartdetail != null %}
+         {% for cartdetail in product.cartdetail %}
+            <a href="{{ path('view_product_by_id', {'id': cartdetail.id })}}">
+               {# <h5> {{ course.name }} </h5> #}
+            </a>
+         {% endfor %}
+      {% endif %}
+   </div>
+</div>
+{% endblock %}

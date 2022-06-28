@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container-fluid col-md-8 text-center mt-3">
+<table class="table table-condensed">
+    <tr>
+        <th class="text text-bg-success" colspan="3">Customer Detail</th>
+    </tr>
+    <tr>
+        <th>Customer Name</th>
+        <td>{{ customer.name }}</td>
+    </tr>
+    <tr>
+        <th>Customer Address</th>
+        <td>{{ customer.address }}</td>
+    </tr>
+    <tr>
+        <th>Customer Phone</th>
+        <td>{{ customer.phone }}</td>
+    </tr>
+    <tr>
+        <th>Customer DateOfBirth</th>
+        <td>{{ customer.dateofbirth }}</td>
+    </tr>
+    <tr>
+        <th>Orders List</th>
+        <td>
+           {% if customer.orders != null %}
+              {% for orders in customer.orders %}
+              <a href="{{ path('view_customer_bby_id', {'id':orders.id })}}">
+                 {# {{ orders.name }} #}
+              </a>
+              <br>
+            {% endfor %}
+            {% endif %}
+        </td>
+    </tr>
+</table>
+</div>
+{% endblock %}
