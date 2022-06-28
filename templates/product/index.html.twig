@@ -1,20 +1,62 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello ProductController!{% endblock %}
+{% extends "base.html.twig" %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container col-md-8 text-center mt-3">
+    <h1 class="text text-bg-success">Product </h1>
+    {# gán chức năng Add Course cho role Admin #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('add_product') }}"> 
+             <img src="{{ asset('images/icons/add.jpg')}}" width="80" height="30">
+        </a>
+    {% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Xampp/htdocs/webg301/Asm01/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Xampp/htdocs/webg301/Asm01/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
-    </ul>
+    <br><br>
+    <form class="form-group" action="{{ path('search_product_name') }}">
+        <input class="form-control" type="search" name="keyword" required placeholder="Search by product name">
+    </form>
+    <div class="form-group mt-3 col-md-6">
+    <select onchange="window.location.href=this.value" class="form-control">
+        <option>Sort by</option>
+        <option value="{{ path('sort_product_name_ascending') }}">NameAscending</option>
+        <option value="{{ path('sort_product_name_descending') }}">Name Descending</option>
+    </select>
+    </div>
+    {% if product == null %}
+        <h3 class="text text-bg-danger mt-3">Product not found !</h3>
+    {% else %}
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Product Image</th>
+                <th>Product Price</th>
+                <th>Product Type</th>
+                <th>Menu</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }} </td>
+                <td>
+                    <a href="{{ path('view_product_by_id', {'id': product.id })}}">
+                        {{ product.name }}
+                    </a>
+                </td>
+                <td>
+                    <a class="text-decoration-none" href="{{ path('edit_product', {'id': product.id })}}">
+                        <img src="{{ asset('images/products/edit.png') }}" width="30" height="30" alt="Edit">
+                    </a>
+                    <a class="text=decoration-none" href="{{ path('delete_product', {'id': product.id })}}"
+                    onclick="return confirm('Are you sure to delete this product ?');">
+                        <img src="{{ asset('imanges/products/delete.png') }}" width="30" height="30" alt="Delete">
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody> #}
+    </table>
+    {% endif %}
 </div>
 {% endblock %}

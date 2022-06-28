@@ -47,22 +47,19 @@ class CustomerRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Customer[] Returns an array of Customer objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Customer[] Returns an array of Customer objects
+    */
+    
+    public function viewAllCustomer($value)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('customer')
+            ->orderBy('customer.id', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Customer

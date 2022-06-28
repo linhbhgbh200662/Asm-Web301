@@ -6,13 +6,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/cart')]
 class CartDetailController extends AbstractController
 {
-    #[Route('/cart/detail', name: 'app_cart_detail')]
-    public function index(): Response
+    #[Route('/', name: 'view_cartdetail')]
+    public function Cartindex(): Response
     {
-        return $this->render('cart_detail/index.html.twig', [
-            'controller_name' => 'CartDetailController',
+        $cart = $this -> getDoctrine() -> getRepository(CartDetail::class) -> findAll();
+        return $this ->render("cart/index.html.twig",
+        [
+            'cart' => $cart
         ]);
+    }
+
+    #[Route('/detail/{id}', name: 'view_cart_by_id')]
+    public function CartDetails($id) {
+        $cart = $his -> getDoctrine() -> getRepository(CartDetail::class) ->find($id);
+        if ($cart == null ) {
+            $this ->addFlash("Error", "Cart not found !");
+            return $this -> redirectToRoute("view_cartdetail");
+        }
+        return $this -> render('cart'
+    );
     }
 }
