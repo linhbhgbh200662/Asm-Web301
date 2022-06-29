@@ -25,10 +25,10 @@ class Product
     #[ORM\Column(type: 'float')]
     private $Price;
 
-    #[ORM\ManyToOne(targetEntity: OrderDetail::class, inversedBy: 'OrderDetail')]
+    #[ORM\ManyToOne(targetEntity: OrderDetail::class, inversedBy: 'product')]
     private $orderdetail;
 
-    #[ORM\ManyToOne(targetEntity: CartDetail::class, inversedBy: 'CartDetail')]
+    #[ORM\ManyToOne(targetEntity: CartDetail::class, inversedBy: 'product')]
     private $cartdetail;
 
     public function getId(): ?int
@@ -84,24 +84,24 @@ class Product
         return $this;
     }
 
-    public function getOrderdetail(): ?OrderDetail
+    public function getOrderdetail(): ?orderdetail
     {
         return $this->orderdetail;
     }
 
-    public function setOrderdetail(?OrderDetail $orderdetail): self
+    public function setOrderdetail(?orderdetail $orderdetail): self
     {
         $this->orderdetail = $orderdetail;
 
         return $this;
     }
 
-    public function getCartdetail(): ?CartDetail
+    public function getCartdetail(): ?cartdetail
     {
         return $this->cartdetail;
     }
 
-    public function setCartdetail(?CartDetail $cartdetail): self
+    public function setCartdetail(?cartdetail $cartdetail): self
     {
         $this->cartdetail = $cartdetail;
 

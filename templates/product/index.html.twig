@@ -3,25 +3,25 @@
 {% block body %}
 <div class="container col-md-8 text-center mt-3">
     <h1 class="text text-bg-success">Product </h1>
-    {# gán chức năng Add Course cho role Admin #}
-    {% if is_granted('ROLE_ADMIN') %}
+    {# gán chức năng Add CourseProduct cho role Admin #}
+    {# {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('add_product') }}"> 
              <img src="{{ asset('images/icons/add.jpg')}}" width="80" height="30">
         </a>
-    {% endif %}
+    {% endif %} #}
 
-    <br><br>
+    {# <br><br>
     <form class="form-group" action="{{ path('search_product_name') }}">
         <input class="form-control" type="search" name="keyword" required placeholder="Search by product name">
-    </form>
+    </form> #}
     <div class="form-group mt-3 col-md-6">
-    <select onchange="window.location.href=this.value" class="form-control">
+    {# <select onchange="window.location.href=this.value" class="form-control">
         <option>Sort by</option>
         <option value="{{ path('sort_product_name_ascending') }}">NameAscending</option>
         <option value="{{ path('sort_product_name_descending') }}">Name Descending</option>
-    </select>
+    </select> #}
     </div>
-    {% if product == null %}
+    {% if products == null %}
         <h3 class="text text-bg-danger mt-3">Product not found !</h3>
     {% else %}
     <table class="table table-responsive">
@@ -30,9 +30,6 @@
                 <th>Product Id</th>
                 <th>Product Name</th>
                 <th>Product Image</th>
-                <th>Product Price</th>
-                <th>Product Type</th>
-                <th>Menu</th>
             </tr>
         </thead>
         <tbody>

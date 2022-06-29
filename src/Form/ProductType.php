@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Product;
 use App\Entity\CartDetail;
 use App\Entity\OrderDetail;
+use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,7 +38,15 @@ class ProductType extends AbstractType
                 'data_class' => null,
                 'required' => is_null($builder ->getData() ->getImage())
             ])
-            ->add('price', )
+            ->add('price', FloatType::class,
+            [
+                'label' => 'Price',
+                'required' => true,
+                'attr' =>[
+                    'min' => 520000,
+                    'max' => 5415015445
+                ]
+            ] )
             ->add('orderdetail', Entity::class,
             [
                 'label' => 'OrderDetail name',

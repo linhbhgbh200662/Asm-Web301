@@ -12,47 +12,37 @@ class ProductFixtures extends Fixture
     {
         for( $i=1; $i<=15; $i++) {
             $product = new Product;
-            $product -> setproductID('P1');
-            $product -> setcartID($this -> getReference('C1'));
             $product -> setName("Name $i");
-            $product -> setType("T-shirt, Polo, Hoodie, Jacket");
+            $product -> setType("T-shirt");
             $product -> setImage("https://mcdn.nhanh.vn/store/2071/ps/20220615/ts265.jpg");
             $product -> setPrice((float)(rand(123000,1820450)));
             $manager -> persist($product);
 
             $product = new Product;
-            $product -> setproductID('P2');
-            $product -> setcartID($this -> getReference('C2'));
             $product -> setName("Name $i");
-            $product -> setType("Polo, Hoodie, Jacket");
-            $product -> setImage("https://mcdn.nhanh.vn/store/2071/ps/20220615/ts265.jpg");
+            $product -> setType("Polo");
+            $product -> setImage("https://product.hstatic.net/1000346413/product/dsc02736-vuong_39678bc0b8e9450290d8d5c8d2c9c521_master.jpg");
             $product -> setPrice((float)(rand(123000,1820450)));
             $manager -> persist($product);
 
             $product = new Product;
-            $product -> setproductID('P3');
-            $product -> setcartID($this -> getReference('C3'));
             $product -> setName("Name $i");
-            $product -> setType("T-shirt, Polo, Hoodie, Jacket");
-            $product -> setImage("https://mcdn.nhanh.vn/store/2071/ps/20220615/ts265.jpg");
+            $product -> setType("Hoodie");
+            $product -> setImage("https://is4.fwrdassets.com/images/p/fw/z/COTF-MK2_V1.jpg");
             $product -> setPrice((float)(rand(123000,1820450)));
             $manager -> persist($product);
 
             $product = new Product;
-            $product -> setproductID('P4');
-            $product -> setcartID($this -> getReference('C4'));
             $product -> setName("Name $i");
-            $product -> setType("T-shirt, Polo, Hoodie, Jacket");
-            $product -> setImage("https://mcdn.nhanh.vn/store/2071/ps/20220615/ts265.jpg");
+            $product -> setType("Jacket");
+            $product -> setImage("https://vulcano.vn/images/products/2020/11/25/original/ao-jacket-0603-1606301557.jpg");
             $product -> setPrice((float)(rand(123000,1820450)));
             $manager -> persist($product);
 
             $product = new Product;
-            $product -> setproductID('P5');
-            $product -> setcartID($this -> getReference('C5'));
             $product -> setName("Name $i");
-            $product -> setType("T-shirt, Polo, Hoodie, Jacket");
-            $product -> setImage("https://mcdn.nhanh.vn/store/2071/ps/20220615/ts265.jpg");
+            $product -> setType("Varsity");
+            $product -> setImage("https://img.cdn.vncdn.io/nvn/ncdn/store/24295/ps/20211117/VASITY_JACKET_UPSET.jpg");
             $product -> setPrice((float)(rand(123000,1820450)));
             $manager -> persist($product);
 

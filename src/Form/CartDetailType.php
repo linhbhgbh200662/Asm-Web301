@@ -2,16 +2,37 @@
 
 namespace App\Form;
 
+use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class CartDetailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('field_name')
+            ->add('quantity', IntegerType::class,
+            [
+                'label' => 'CartDetail',
+                'required' => true,
+                'attr' => [
+                    'min' => 520000,
+                    'max' => 565265652
+                ]
+            ] )
+            ->add('price', FloatType::class,
+            [
+                'label' => 'Price',
+                'required' => true,
+                'attr' =>[
+                    'min' => 520000,
+                    'max' => 5415015445
+                ]
+            ])
+            ->add('Save', SubmitType::class)
         ;
     }
 

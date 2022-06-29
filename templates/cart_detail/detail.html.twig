@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container-fluid col-md-3 text-center mt-block">
+<table class="table table-condensed">
+   <tr>
+    <th>Cart Quantity</th>
+    <td>{{ cart.quantity }}</td>
+   </tr>
+   <tr>
+    <th>Cart Price</th>
+    <td>{{ cart.price }}</td>
+   </tr>
+   <tr>
+    <th>CartDetail</th>
+    <td>
+    {% if cart.product != null %}
+    {% for cart in cart.product %}
+    <a href="{{path('view_product_by_id', {'id': product.id })}}">
+         {{ product.name }}
+    </a>
+    {% endfor %}
+    {% endif %}
+    </td>
+   </tr>
+</table>
+</div>
+{% endblock %}

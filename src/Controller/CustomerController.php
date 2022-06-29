@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Customer;
+use App\Form\CustomerType;
+use App\Repository\CustomerRepository;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @IsGranted("ROLE_MANAGER")
@@ -15,8 +20,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class CustomerController extends AbstractController
 {
     #[Route('/ ', name: 'view_customer')]
-    public function CustomerIndex(CustomerRespository $customerRepository) {
-        $customer = $customerRepository -> viewAllCustomer();
+    public function CustomerIndex(CustomerRepository $customerRepository) {
+        $customers = $customerRepository -> findAll();
         return $this -> render("customer/index.html.twig",
         [
             'customers' => $customers
@@ -79,7 +84,7 @@ class CustomerController extends AbstractController
             $form -> handleRequest($request);
             if ($form -> isSubmitted() && $form -> isValid()) {
                 $manager = $this -> getDoctrine() -> getManager();
-                $manager -> persist($custoemr);
+                $manager -> persist($customer);
                 $manager -> flush();
                 $this -> addFlash("Success", "Edit customer succed !");
                 return $this -> redirectToRoute("view_customer");

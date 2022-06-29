@@ -1,20 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartDetailController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container col-md-6 text-center mt-3">
+    <h1 class="text text=bg-success">CartDetail</h1>
+    <a class="btn btn-primary" href="{{ path('add_cartdetail' )}}"Add new cartdetail</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>CartDetail Id</th>
+            <th>CartDetail quantity</th>
+            <th>CartDetail Price</th>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Xampp/htdocs/webg301/Asm01/src/Controller/CartDetailController.php'|file_link(0) }}">src/Controller/CartDetailController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Xampp/htdocs/webg301/Asm01/templates/cart_detail/index.html.twig'|file_link(0) }}">templates/cart_detail/index.html.twig</a></code></li>
-    </ul>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cartdetail in cartdetails %}
+           <tr>
+            <td>{{ cart.id }}</td>
+            <td>
+            <a class="btn btn-info" href="{{ path('view_cartdetail_by_id', {'id': cart.id })}}">Detail</a>
+            <a class="btn btn-danger" href="{{ path('edit_cartdetail', {'i': cart.id })}}">Edit</a>
+            <a class="btn btn-warning" href="{{ path('delete_acartdetail', {'id': cart.id })}}"
+                onclick = "return confirm('Do you want to delete this cart ?');"
+                >Delete</a>
+            </td>
+           </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

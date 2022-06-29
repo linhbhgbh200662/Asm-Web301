@@ -27,7 +27,7 @@ class Customer
     #[ORM\Column(type: 'date')]
     private $DateOfBirth;
 
-    #[ORM\OneToMany(mappedBy: 'Orders', targetEntity: Orders::class)]
+    #[ORM\OneToMany(mappedBy: 'Orders', targetEntity: Customer::class)]
     private $orders;
 
     public function __construct()
